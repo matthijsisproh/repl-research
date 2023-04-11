@@ -42,3 +42,11 @@ void connect_wifi(const char* wifi_ssid, const char* wifi_password) {
     delay(500);
   }
 }
+
+
+
+
+
+
+
+
