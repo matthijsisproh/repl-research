@@ -1,17 +1,18 @@
 import csv
+import os
 
-with open('C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\Data\\mqtt_data.csv', 'r') as mqtt_data:
-    mqtt_dict = csv.DictReader(mqtt_data)
 
-    # mqtt_data.close()
-    date_offset = "04/01/2023 12:00:00 PM"
-    date_limit = "04/01/2023 13:00:00 PM"
-    count_mqtt = 0
-    for data in mqtt_dict:
-        # print(data['Interval'])
-        if(data['Interval'] >= date_offset):
-            if(data['Interval'] <= date_limit):
-                count_mqtt += 1
-                print(data['Interval'])
+# Results of blob files MQTT Protocol
+blob_files = ["mqtt_blob_43.csv", "mqtt_blob_44.csv", "mqtt_blob_45.csv"]
 
-    print(f"Succesfull requests on MQTT protocol: {count_mqtt}")
+for blob in blob_files:
+    with open(f'{os.getcwd()}/Data/{blob}', 'r') as mqtt_data:
+        mqtt_dict = csv.DictReader(mqtt_data)
+        count = 0
+        for data in mqtt_dict:
+            count += 1
+    
+    print(f"File {__file__} has {count} successful data points")
+
+
+# Results of blob files HTTP Protocol

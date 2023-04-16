@@ -12,12 +12,12 @@
 #define DHTTYPE DHT11   // DHT 11
 
 
-#define WIFI_SSID "Handelsweg 9"
-#define WIFI_PASSWORD "Hb9Bu76%Rad"
+#define WIFI_SSID "*****"
+#define WIFI_PASSWORD "******"
 
 const char* SCOPE_ID = "0ne00996788";
 const char* DEVICE_ID = "mydht11";
-const char* DEVICE_KEY = "U50xYdq3yVB/Inw7Nq9rgMBXRhFJqVy14E+1AuT1yCI=";
+const char* DEVICE_KEY = "******";
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -61,6 +61,16 @@ void setup() {
    dht.begin();
 }
 
+class test_HTPP{
+  
+
+
+
+
+};
+
+
+
 void loop() {
 
 float h = dht.readHumidity();
@@ -70,7 +80,7 @@ float t = dht.readTemperature();
   if (isConnected) {
 
     unsigned long ms = millis();
-    if (ms - lastTick > 10000) {  // send telemetry every 10 seconds
+    if (ms - lastTick) {  // send telemetry every 10 seconds
       char msg[64] = {0};
       int pos = 0, errorCode = 0;
 

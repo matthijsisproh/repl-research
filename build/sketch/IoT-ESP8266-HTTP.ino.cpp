@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
 #include <ESP8266WiFi.h>
 #include <base64.h>
 #include "src/sha256.h"
@@ -12,16 +14,23 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 
-const char* ssid = "*******";
-const char* password = "******";
+const char* ssid = "Handelsweg 9";
+const char* password = "Hb9Bu76%Rad";
 
 const char* host = "temperatuursensoren.azure-devices.net";
 const char* deviceId = "dht11_http";
 const char* apiVersion = "2016-11-14";
 
 const char* policyName = "iothubowner";
-const char* sharedAccessKey = "*******";
+const char* sharedAccessKey = "1vUD4bATBx05zqv7WX5JzY+OJo/ObLdOJ4ZTBWX4F0Q=";
 
+#line 25 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
+String generateSasToken(String uri, String key, String policyName, int expiry);
+#line 46 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
+void setup();
+#line 57 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
+void loop();
+#line 25 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
 String generateSasToken(String uri, String key, String policyName, int expiry) {
   unsigned long epochTime = time(nullptr);
   String expiryTime = String(epochTime + expiry);
@@ -95,4 +104,5 @@ void loop() {
 
   delay(5000);
 }
+
 

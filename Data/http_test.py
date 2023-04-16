@@ -1,35 +1,48 @@
-from azure.iot.device import IoTHubDeviceClient, Message
+
+
+from base64 import b64encode, b64decode
+from hashlib import sha256
+from time import time
+from urllib import parse
+from hmac import HMAC
+
+def generate_sas_token(uri, key, policy_name, expiry=3600):
+    ttl = time() + expiry
+    sign_key = "%s\n%d" % ((parse.quote_plus(uri)), int(ttl))
+    print(sign_key)
+    signature = b64encode(HMAC(b64decode(key), sign_key.encode('utf-8'), sha256).digest())
+
+    rawtoken = {
+        'sr' :  uri,
+        'sig': signature,
+        'se' : str(int(ttl))
+    }
+
+    if policy_name is not None:
+        rawtoken['skn'] = policy_name
+
+    return 'SharedAccessSignature ' + parse.urlencode(rawtoken)
+
+import requests
 import json
-import time
 
-# IoT Hub Connection Strings
-connection_string = "HostName=temperatuursensors.azure-devices.net;DeviceId=temperature-meter;SharedAccessKey=fjHCcV7yf+9lzKceKf3udCptI43rkLYBbcOpwdhKPWE="
-device_id = "temperature-meter"
-device_key = ""
+print("Start sending...")
 
-# Temperature and Humidity Sensor Measurements
-temperature = 25.0
-humidity = 60.0
+iotHub = "temperatuursensoren"
+deviceId = "dht11_http"
+api = "2016-11-14" # "2016-02-03"
+restUriPost = f"https://{iotHub}.azure-devices.net/devices/{deviceId}/messages/events?api-version={api}"
 
-# Create Telemetry Payload
-payload = {
-    "temperature": temperature,
-    "humidity": humidity
-}
-message = Message(json.dumps(payload))
+while True:
+    sas = generate_sas_token("temperatuursensoren.azure-devices.net", "*****", "iothubowner", 3600 )
 
-# Create IoT Hub Client
-client = IoTHubDeviceClient.create_from_connection_string(connection_string)
+    headers = {"Authorization": sas}
 
-# Connect to IoT Hub
-client.connect()
+    body = {"Temperature": 24.6, "Humidity": 32, "Signal": "ok"}
+    content = json.dumps(body)
+    stringContent = content.encode('utf-8')
 
-# Send Telemetry Message
-try:
-    client.send_message(message)
-    print("Telemetry data sent successfully!")
-except Exception as e:
-    print("Error sending telemetry data: ", e)
+    resultPost = requests.post(restUriPost, data=stringContent, headers=headers)
 
-# Disconnect from IoT Hub
-client.disconnect()
+
+    print(f"Sent {resultPost}")
