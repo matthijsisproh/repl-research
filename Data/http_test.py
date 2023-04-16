@@ -32,14 +32,20 @@ iotHub = "temperatuursensoren"
 deviceId = "dht11_http"
 api = "2016-11-14" # "2016-02-03"
 restUriPost = f"https://{iotHub}.azure-devices.net/devices/{deviceId}/messages/events?api-version={api}"
+# sas = generate_sas_token("temperatuursensors.azure-devices.net", "lYKx0lSu3JSTqarZh4jwfCQyVFVof9kWYyDtT0KxoIc=", "iothubowner", 3600 )
+# print(sas)
 
-sas = generate_sas_token("temperatuursensoren.azure-devices.net", "*****", "iothubowner", 3600 )
 
-headers = {"Authorization": sas}
+while True:
+    sas = generate_sas_token("temperatuursensoren.azure-devices.net", "1vUD4bATBx05zqv7WX5JzY+OJo/ObLdOJ4ZTBWX4F0Q=", "iothubowner", 3600 )
 
-body = {"Temperature": 50, "Humidity": 20, "Signal": "ok"}
-content = json.dumps(body)
-stringContent = content.encode('utf-8')
+    headers = {"Authorization": sas}
 
-resultPost = requests.post(restUriPost, data=stringContent, headers=headers)
-print(f"Sent {resultPost}")
+    body = {"Temperature": 24.6, "Humidity": 32, "Signal": "ok"}
+    content = json.dumps(body)
+    stringContent = content.encode('utf-8')
+
+    resultPost = requests.post(restUriPost, data=stringContent, headers=headers)
+
+
+    print(f"Sent {resultPost}")

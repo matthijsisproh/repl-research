@@ -1,98 +1,97 @@
-# 1 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino"
-# 2 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
-# 3 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
-# 4 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
-# 5 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
-# 6 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
-# 7 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino" 2
+# 1 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
+// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full
+// license information.
 
-
-
-
+# 6 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino" 2
+# 7 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino" 2
+# 8 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino" 2
+# 9 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino" 2
+# 18 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
+const char* SCOPE_ID = "0ne00996788";
+const char* DEVICE_ID = "mydht11";
+const char* DEVICE_KEY = "U50xYdq3yVB/Inw7Nq9rgMBXRhFJqVy14E+1AuT1yCI=";
 
 DHT dht(2, DHT11 /* DHT 11*/);
 
+void on_event(IOTContext ctx, IOTCallbackInfo* callbackInfo);
+# 26 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino" 2
 
-const char* ssid = "Handelsweg 9";
-const char* password = "Hb9Bu76%Rad";
+void on_event(IOTContext ctx, IOTCallbackInfo* callbackInfo) {
+  // ConnectionStatus
+  if (strcmp(callbackInfo->eventName, "ConnectionStatus") == 0) {
+    do { Serial.printf("  - "); Serial.printf("Is connected ? %s (%d)", callbackInfo->statusCode == 0x40 ? "YES" : "NO", callbackInfo->statusCode); Serial.printf("\r\n"); } while (0)
 
-const char* host = "temperatuursensoren.azure-devices.net";
-const char* deviceId = "dht11_http";
-const char* apiVersion = "2016-11-14";
-
-const char* policyName = "iothubowner";
-const char* sharedAccessKey = "1vUD4bATBx05zqv7WX5JzY+OJo/ObLdOJ4ZTBWX4F0Q=";
-
-String generateSasToken(String uri, String key, String policyName, int expiry) {
-  unsigned long epochTime = time(nullptr);
-  String expiryTime = String(epochTime + expiry);
-  String stringToSign = uri + "\n" + expiryTime;
-  Serial.println(stringToSign);
-
-  char signature[32];
-  Sha256 hash;
-  hash.initHmac((const uint8_t*) key.c_str(), key.length());
-  hash.resultHmac();
-
-  String encodedSignature = base64::encode((const uint8_t*) signature, 32);
-  String token = "SharedAccessSignature sr=" + uri + "&sig=" + encodedSignature + "&se=" + expiryTime;
-  if (policyName != "") {
-    token += "&skn=" + policyName;
+                                         ;
+    isConnected = callbackInfo->statusCode == 0x40;
+    return;
   }
-  return token;
+
+  // payload buffer doesn't have a null ending.
+  // add null ending in another buffer before print
+  AzureIOT::StringBuffer buffer;
+  if (callbackInfo->payloadLength > 0) {
+    buffer.initialize(callbackInfo->payload, callbackInfo->payloadLength);
+  }
+
+  do { Serial.printf("  - "); Serial.printf("- [%s] event was received. Payload => %s\n", callbackInfo->eventName, buffer.getLength() ? *buffer : "EMPTY"); Serial.printf("\r\n"); } while (0)
+                                                                              ;
+
+  if (strcmp(callbackInfo->eventName, "Command") == 0) {
+    do { Serial.printf("  - "); Serial.printf("- Command name was => %s\r\n", callbackInfo->tag); Serial.printf("\r\n"); } while (0);
+  }
 }
-
-
 
 void setup() {
   Serial.begin(9600);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
+
+  connect_wifi("Handelsweg 9", "Hb9Bu76%Rad");
+  connect_client(SCOPE_ID, DEVICE_ID, DEVICE_KEY);
+
+  if (context != __null) {
+    lastTick = 0; // set timer in the past to enable first telemetry a.s.a.p
   }
-  Serial.println("Connected to WiFi");
-  dht.begin();
+   dht.begin();
 }
+
 
 void loop() {
-  String sasToken = generateSasToken(host, sharedAccessKey, policyName, 3600);
-  Serial.println(sasToken);
 
-  String url = "https://" + String(host) + "/devices/" + String(deviceId) + "/messages/events?api-version=" + String(apiVersion);
+float h = dht.readHumidity();
+float t = dht.readTemperature();
 
-  WiFiClientSecure client;
-    if (!client.connect(host, 443)) {
-      Serial.println("Connection failed");
-      return;
+
+  if (isConnected) {
+
+    // unsigned long ms = millis();
+    // if (ms - lastTick) {  // send telemetry every 10 seconds
+      char msg[64] = {0};
+      int pos = 0, errorCode = 0;
+
+      // lastTick = ms;
+      // if (loopId++ % 2 == 0) {  // send telemetry
+        pos = snprintf(msg, sizeof(msg) - 1, "{\"Temperature\": %f}",
+                       t);
+        errorCode = iotc_send_telemetry(context, msg, pos);
+
+        pos = snprintf(msg, sizeof(msg) - 1, "{\"Humidity\":%f}",
+                       h);
+        errorCode = iotc_send_telemetry(context, msg, pos);
+
+      // } else {  // send property
+
+      // } 
+
+      msg[pos] = 0;
+
+      if (errorCode != 0) {
+        do { Serial.printf("X - Error at %s:%d\r\n\t", "IoT-ESP8266-Azure.ino", 95); Serial.printf("Sending message has failed with error code %d", errorCode); Serial.printf("\r\n"); } while (0);
+      }
     }
-
-  float humidity = dht.readHumidity();
-  float temperature = dht.readTemperature();
-  // float humidity = 
-
-  String signal = "ok";
-  String payload = "{\"Temperature\":" + String(temperature) + ", \"Humidity\":" + String(humidity) + ", \"Signal\":\"" + signal + "\"}";
-  client.print(String("POST ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" +
-               "Authorization: " + sasToken + "\r\n" +
-               "Content-Type: application/json\r\n" +
-               "Content-Length: " + payload.length() + "\r\n" +
-               "\r\n" + payload + "\r\n");
-
-  Serial.println("Sending data...");
-  while (client.connected()) {
-    String line = client.readStringUntil('\n');
-    if (line == "\r") {
-      break;
+    else{
+    iotc_do_work(context); // do background work for iotc
+    iotc_free_context(context);
+    context = __null;
+    connect_client(SCOPE_ID, DEVICE_ID, DEVICE_KEY);
     }
   }
-
-  while (client.available()) {
-    String line = client.readStringUntil('\n');
-    Serial.println(line);
-  }
-  client.stop();
-
-  delay(5000);
-}

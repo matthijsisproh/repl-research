@@ -3,6 +3,6 @@
     "board": "esp8266:esp8266:d1_mini",
     "port": "COM4",
 
-    "sketch": "IoT-ESP8266-HTTP\\IoT-ESP8266-HTTP.ino",
+    "sketch": "IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino",
     "output": "build"
 }

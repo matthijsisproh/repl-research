@@ -10,27 +10,72 @@
     "Includepath": "C:\\Users\\MatthijsKoelewijnDen\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\variants\\d1_mini"
   },
   {
-    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-HTTP.ino.cpp",
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-Azure.ino.cpp",
     "Include": "ESP8266WiFi.h",
     "Includepath": "C:\\Users\\MatthijsKoelewijnDen\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\ESP8266WiFi\\src"
   },
   {
-    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-HTTP.ino.cpp",
-    "Include": "ArduinoJson.h",
-    "Includepath": "C:\\Users\\MatthijsKoelewijnDen\\OneDrive - Den of Data\\Documents\\Arduino\\libraries\\ArduinoJson\\src"
-  },
-  {
-    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-HTTP.ino.cpp",
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-Azure.ino.cpp",
     "Include": "DHT.h",
     "Includepath": "C:\\Users\\MatthijsKoelewijnDen\\OneDrive - Den of Data\\Documents\\Arduino\\libraries\\DHT_sensor_library"
   },
   {
-    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-HTTP.ino.cpp",
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\IoT-ESP8266-Azure.ino.cpp",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\sha256.cpp",
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\arduino\\PubSubClient.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\arduino\\comms.cpp",
+    "Include": "SPI.h",
+    "Includepath": "C:\\Users\\MatthijsKoelewijnDen\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\SPI"
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\arduino\\comms.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\arduino\\iotc.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\base64.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\iotc_common.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\iotc_internal.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\iotc_json.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\jsmn.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\sha256.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\build\\sketch\\src\\iotc\\common\\string_buffer.cpp",
     "Include": "",
     "Includepath": null
   },
@@ -131,6 +176,11 @@
   },
   {
     "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\OneDrive - Den of Data\\Documents\\Arduino\\libraries\\DHT_sensor_library\\DHT_U.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\MatthijsKoelewijnDen\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\libraries\\SPI\\SPI.cpp",
     "Include": "",
     "Includepath": null
   },

@@ -1,5 +1,5 @@
-C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\sha256.cpp.o: \
- C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\sha256.cpp \
+C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\iotc\common\sha256.cpp.o: \
+ C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\iotc\common\sha256.cpp \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/avr/pgmspace.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/avr/../pgmspace.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/sys/pgmspace.h \
@@ -25,7 +25,7 @@ C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\sh
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/sys/lock.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/sys/string.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/user_config.h \
- C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\sha256.h \
+ C:\Users\MatthijsKoelewijnDen\Documents\Github\repl-research\build\sketch\src\iotc\common\sha256.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/inttypes.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Print.h \
  C:\Users\MatthijsKoelewijnDen\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/WString.h \

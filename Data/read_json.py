@@ -7,8 +7,7 @@ from dateutil.parser import parse
 json_file = "http_blob_1.json"
 
 # Tijd waarnaar moet worden gezocht
-target_time = parse("2023-04-16T15:56:27.2730000Z")
-
+target_time = parse("2023-04-16T16:57:00.0825460Z")
 # Tolerantie in seconden
 tolerance = 60
 
@@ -19,7 +18,7 @@ with open(f'{os.getcwd()}\{json_file}', "r") as f:
 # Tel het aantal datapunten binnen 60 seconden na de target_time
 count = 0
 for x in range(0, len(data)):
-    enqueued_time = parse(data[x]['IoTHub']['EnqueuedTime'])
+    enqueued_time = parse(data[x]['EventProcessedUtcTime'])
     if target_time <= enqueued_time <= target_time + timedelta(seconds=tolerance):
         count += 1
 

@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full
 // license information.
@@ -13,7 +15,7 @@
 
 
 #define WIFI_SSID "Handelsweg 9"
-#define WIFI_PASSWORD "*****"
+#define WIFI_PASSWORD "Hb9Bu76%Rad"
 
 const char* SCOPE_ID = "0ne00996788";
 const char* DEVICE_ID = "mydht11";
@@ -24,6 +26,11 @@ DHT dht(DHTPIN, DHTTYPE);
 void on_event(IOTContext ctx, IOTCallbackInfo* callbackInfo);
 #include "src/connection.h"
 
+#line 52 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
+void setup();
+#line 65 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
+void loop();
+#line 27 "C:\\Users\\MatthijsKoelewijnDen\\Documents\\Github\\repl-research\\IoT-ESP8266-Azure\\IoT-ESP8266-Azure.ino"
 void on_event(IOTContext ctx, IOTCallbackInfo* callbackInfo) {
   // ConnectionStatus
   if (strcmp(callbackInfo->eventName, "ConnectionStatus") == 0) {
@@ -102,5 +109,6 @@ float t = dht.readTemperature();
     connect_client(SCOPE_ID, DEVICE_ID, DEVICE_KEY);
     }
   }
+
 
 
