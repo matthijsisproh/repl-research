@@ -6,7 +6,7 @@ import os
 blob_files = ["mqtt_blob_43.csv", "mqtt_blob_44.csv", "mqtt_blob_45.csv"]
 
 for blob in blob_files:
-    with open(f'{os.getcwd()}/Data/{blob}', 'r') as mqtt_data:
+    with open(f'{os.getcwd()}/{blob}', 'r') as mqtt_data:
         mqtt_dict = csv.DictReader(mqtt_data)
         count = 0
         for data in mqtt_dict:
